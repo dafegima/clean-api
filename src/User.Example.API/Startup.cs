@@ -7,6 +7,9 @@ using User.Example.API.Extensions;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Serilog;
 using User.Example.API.ExceptionHandler;
+using User.Example.Application;
+using User.Example.Infrastructure;
+using User.Example.Domain;
 
 namespace User.Example.API
 {
@@ -29,7 +32,8 @@ namespace User.Example.API
                     .RegisterCors()
                     .AddMediator()
                     .AddValidators()
-                    .AddRepositories();
+                    .AddRepositories()
+                    .AddDomain();
 
             Log.Information("API started: {@settings}", Configuration);
         }

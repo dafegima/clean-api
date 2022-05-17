@@ -6,7 +6,7 @@ namespace User.Example.Application.Commands.DeleteUser
     {
         public DeleteUserCommandValidator()
         {
-            RuleFor(x => x.Identification).NotEmpty();
+            RuleFor(x => x.Identification).NotEmpty().MaximumLength(20);
         }
     }
 }

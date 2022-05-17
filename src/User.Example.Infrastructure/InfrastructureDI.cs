@@ -1,10 +1,10 @@
-﻿using User.Example.Domain.Interfaces;
+﻿using Microsoft.Extensions.DependencyInjection;
+using User.Example.Domain.Interfaces;
 using User.Example.Infrastructure.Repositories;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace User.Example.API.Extensions
+namespace User.Example.Infrastructure
 {
-    public static class RepositoryExtension
+    public static class InfrastructureDI
     {
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using User.Example.Domain.Exceptions;
+using User.Example.Domain.Exceptions.Models;
 
 namespace User.Example.Application.PipelineBehaviors
 {
@@ -36,7 +38,7 @@ namespace User.Example.Application.PipelineBehaviors
                     Key = propertyName,
                     Values = errorMessages.Distinct().ToArray()
                 })
-                .Select(x=> new CustomValidationModel() { Property = x.Key, Messages = x.Values})
+                .Select(x=> new CustomValidationModel() { Property = x.Key, Errors = x.Values})
                 .ToList();
 
             if (failures.Any())

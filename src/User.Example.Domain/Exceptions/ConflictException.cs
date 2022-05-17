@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace User.Example.Application.PipelineBehaviors
+namespace User.Example.Domain.Exceptions
 {
     public class ConflictException : Exception
     {

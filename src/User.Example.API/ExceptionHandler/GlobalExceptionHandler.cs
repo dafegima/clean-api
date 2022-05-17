@@ -1,12 +1,10 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-using User.Example.Application.PipelineBehaviors;
+using User.Example.Domain.Exceptions;
 
 namespace User.Example.API.ExceptionHandler
 {
@@ -33,10 +31,6 @@ namespace User.Example.API.ExceptionHandler
 
                 switch (error)
                 {
-                    case AppException:
-                        // custom application error 
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        break;
                     case KeyNotFoundException e:
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;

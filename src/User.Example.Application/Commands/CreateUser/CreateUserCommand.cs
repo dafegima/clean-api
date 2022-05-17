@@ -5,6 +5,7 @@ namespace User.Example.Application.Commands.CreateUser
 {
     public class CreateUserCommand : IRequest<bool>
     {
+        public CreateUserCommand() { }
         public CreateUserCommand(string identification, string nickName, string firstName, string lastName, string email, string genre, DateTime birthDate)
         {
             Identification = identification;

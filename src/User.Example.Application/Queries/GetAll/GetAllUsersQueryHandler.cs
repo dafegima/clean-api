@@ -9,15 +9,15 @@ namespace User.Example.Application.Queries.GetAll
 {
     public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, IEnumerable<UserEntity>>
     {
-        private readonly IUserRepository _userRepository;
-        public GetAllUsersQueryHandler(IUserRepository userRepository)
+        private readonly IUseCase<string, IEnumerable<UserEntity>> _getAllUsersUseCase;
+        public GetAllUsersQueryHandler(IUseCase<string, IEnumerable<UserEntity>> useCase)
         {
-            _userRepository = userRepository;
+            _getAllUsersUseCase = useCase;
         }
 
         public async Task<IEnumerable<UserEntity>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            return _userRepository.GetAll();
+            return _getAllUsersUseCase.Execute(string.Empty);
         }
     }
 }

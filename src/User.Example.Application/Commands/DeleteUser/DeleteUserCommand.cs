@@ -4,6 +4,7 @@ namespace User.Example.Application.Commands.DeleteUser
 {
     public class DeleteUserCommand : IRequest<bool>
     {
+        public DeleteUserCommand() { }
         public DeleteUserCommand(string identification)
         {
             Identification = identification;
