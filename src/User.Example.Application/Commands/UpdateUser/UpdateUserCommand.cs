@@ -2,7 +2,7 @@
 using System;
 using User.Example.Domain.Entities;
 
-namespace User.Example.Application.Commands.UserCmd
+namespace User.Example.Application.Commands.UpdateUser
 {
     public class UpdateUserCommand : IRequest<UserEntity>
     {
@@ -10,7 +10,8 @@ namespace User.Example.Application.Commands.UserCmd
         public string NickName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        public string Genre { get; set; }
+        public string Email { get; set; }
         public DateTime BirthDate { get; set; }
     }
 }

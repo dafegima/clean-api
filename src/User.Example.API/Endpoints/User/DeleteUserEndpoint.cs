@@ -1,4 +1,4 @@
-﻿using User.Example.Application.Commands.UserCmd;
+﻿using User.Example.Application.Commands.DeleteUser;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

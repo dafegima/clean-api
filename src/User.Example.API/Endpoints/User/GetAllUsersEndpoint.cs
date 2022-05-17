@@ -1,4 +1,4 @@
-﻿using User.Example.Application.Queries;
+﻿using User.Example.Application.Queries.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

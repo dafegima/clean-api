@@ -1,7 +1,7 @@
 ﻿using User.Example.Domain.Entities;
 using MediatR;
 
-namespace User.Example.Application.Queries
+namespace User.Example.Application.Queries.GetById
 {
     public class GetUserByIdQuery : IRequest<UserEntity>
     {

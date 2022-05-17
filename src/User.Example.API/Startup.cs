@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using User.Example.API.Extensions;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Serilog;
+using User.Example.API.ExceptionHandler;
 
 namespace User.Example.API
 {
@@ -21,8 +22,6 @@ namespace User.Example.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         { 
-            //    services.AddControllers();
-
             services
                     .AddSettings(Configuration)
                     .AddControllersConfiguration()
@@ -46,6 +45,7 @@ namespace User.Example.API
             }
 
             app.UseResponseCompression();
+            app.UseMiddleware<GlobalExceptionHandler>();
 
             app.UseSwagger();
             app.UseSwaggerUI(

@@ -1,9 +1,9 @@
-﻿using User.Example.Application.Commands.UserCmd;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 using System.Threading.Tasks;
+using User.Example.Application.Commands.CreateUser;
 
 namespace User.Example.API.Endpoints.User
 {
@@ -26,8 +26,7 @@ namespace User.Example.API.Endpoints.User
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand request)
         {
-            CreateUserCommand createUserCommand = new CreateUserCommand(request.Identification, request.NickName, request.FirstName, request.LastName, request.Age, request.BirthDate);
-            await _mediator.Send(createUserCommand);
+            await _mediator.Send(request);
             return Ok();
         }
     }

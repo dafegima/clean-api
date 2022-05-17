@@ -28,11 +28,20 @@ namespace User.Example.Application.PipelineBehaviors
                 .Select(x => x.Validate(context))
                 .SelectMany(x => x.Errors)
                 .Where(x => x != null)
+                .GroupBy(
+                x => x.PropertyName,
+                x => x.ErrorMessage,
+                (propertyName, errorMessages) => new
+                {
+                    Key = propertyName,
+                    Values = errorMessages.Distinct().ToArray()
+                })
+                .Select(x=> new CustomValidationModel() { Property = x.Key, Messages = x.Values})
                 .ToList();
 
             if (failures.Any())
             {
-                throw new ValidationException(failures);
+                throw new CustomValidationException(failures);
             }
 
             return await next();

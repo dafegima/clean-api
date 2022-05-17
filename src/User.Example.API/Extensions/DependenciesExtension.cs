@@ -1,6 +1,4 @@
-﻿using User.Example.API.Endpoints.User;
-using User.Example.Application.Commands.UserCmd;
-using FluentValidation.AspNetCore;
+﻿using User.Example.Application.Commands.CreateUser;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;

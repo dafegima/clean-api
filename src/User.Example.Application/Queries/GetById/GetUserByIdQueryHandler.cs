@@ -3,8 +3,9 @@ using User.Example.Domain.Interfaces;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
-namespace User.Example.Application.Queries
+namespace User.Example.Application.Queries.GetById
 {
     public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserEntity>
     {
@@ -16,7 +17,8 @@ namespace User.Example.Application.Queries
 
         public async Task<UserEntity> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
-            return _userRepository.GetById(request.Identification);  
+            var user = _userRepository.GetById(request.Identification);  
+            return user ?? throw new KeyNotFoundException($"User with id {request.Identification} does not exist.");
         }
     }
 }

@@ -4,8 +4,9 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
-namespace User.Example.Application.Commands.UserCmd
+namespace User.Example.Application.Commands.UpdateUser
 {
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserEntity>
     {
@@ -17,8 +18,16 @@ namespace User.Example.Application.Commands.UserCmd
 
         public async Task<UserEntity> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
-            UserEntity user = new UserEntity(request.Identification, request.NickName, request.FirstName, request.LastName, request.Age, request.BirthDate);
+            if (!UserExist(request.Identification))
+                throw new KeyNotFoundException($"User with id {request.Identification} does not exist.");
+
+            UserEntity user = new UserEntity(request.Identification, request.NickName, request.FirstName, request.LastName, request.Genre, request.Email, request.BirthDate);
             return _userRepository.Update(user);
+        }
+
+        private bool UserExist(string identification)
+        {
+            return _userRepository.GetById(identification) != null;
         }
     }
 }
