@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
@@ -7,17 +8,16 @@ using User.Example.Application.Commands.CreateUser;
 
 namespace User.Example.API.Endpoints.User
 {
+    [Tags("User")]
     [Route("api/users")]
     [Produces("application/json")]
     [ApiController]
     public class CreateUserEndpoint : Controller
     {
-        private readonly ISender _sender;
         private readonly IMediator _mediator;
         public CreateUserEndpoint(IMediator mediator, ISender sender)
         {
             _mediator = mediator;
-            _sender = sender;
         }
 
         [SwaggerResponse((int)HttpStatusCode.OK)]

@@ -1,17 +1,17 @@
 ﻿using User.Example.Domain.Entities;
-using User.Example.Domain.Interfaces;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using User.Example.Domain.Interfaces;
 
 namespace User.Example.Application.Queries.GetById
 {
     public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserEntity>
     {
-        private readonly IUseCase<string, UserEntity> _getUserByIdUseCase;
-        public GetUserByIdQueryHandler(IUseCase<string, UserEntity> useCase)
+        private readonly IGetUserByIdUseCase _getUserByIdUseCase;
+        public GetUserByIdQueryHandler(IGetUserByIdUseCase getUserByIdUseCase)
         {
-            _getUserByIdUseCase = useCase;
+            _getUserByIdUseCase = getUserByIdUseCase;
         }
 
         public async Task<UserEntity> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)

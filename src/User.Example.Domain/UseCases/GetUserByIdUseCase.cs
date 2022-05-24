@@ -4,7 +4,7 @@ using User.Example.Domain.Interfaces;
 
 namespace User.Example.Domain.UseCases
 {
-    public class GetUserByIdUseCase : IUseCase<string, UserEntity> 
+    public class GetUserByIdUseCase : Base, IGetUserByIdUseCase
     {
         private readonly IUserRepository _userRepository;
         public GetUserByIdUseCase(IUserRepository userRepository) : base(userRepository)
@@ -12,7 +12,7 @@ namespace User.Example.Domain.UseCases
             _userRepository = userRepository;
         }
 
-        public override UserEntity Execute(string identification)
+        public UserEntity Execute(string identification)
         {
             return _userRepository.GetById(identification) ?? throw new KeyNotFoundException($"User with id {identification} does not exist.");
             

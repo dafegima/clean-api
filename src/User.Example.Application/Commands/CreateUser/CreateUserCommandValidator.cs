@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using User.Example.Domain.Interfaces;
 
 namespace User.Example.Application.Commands.CreateUser
 {

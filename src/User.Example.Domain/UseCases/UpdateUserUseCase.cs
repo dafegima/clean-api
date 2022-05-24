@@ -4,7 +4,7 @@ using User.Example.Domain.Interfaces;
 
 namespace User.Example.Domain.UseCases
 {
-    public class UpdateUserUseCase : IUseCase<UserEntity, UserEntity>
+    public class UpdateUserUseCase : Base, IUpdateUserUseCase
     {
         private readonly IUserRepository _userRepository;
         public UpdateUserUseCase(IUserRepository userRepository) : base(userRepository)
@@ -12,7 +12,7 @@ namespace User.Example.Domain.UseCases
             _userRepository = userRepository;
         }
 
-        public override UserEntity Execute(UserEntity request)
+        public UserEntity Execute(UserEntity request)
         {
             if (!UserExist(request.Identification))
                 throw new KeyNotFoundException($"User with id {request.Identification} does not exist.");

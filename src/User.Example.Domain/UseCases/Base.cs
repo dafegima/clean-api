@@ -1,14 +1,14 @@
-﻿namespace User.Example.Domain.Interfaces
+﻿using User.Example.Domain.Interfaces;
+
+namespace User.Example.Domain.UseCases
 {
-    public abstract class IUseCase<TRequest, TResponse> where TRequest : class
+    public class Base
     {
         private readonly IUserRepository _userRepository;
-        public IUseCase(IUserRepository userRepository)
+        public Base(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
-
-        public abstract TResponse Execute(TRequest request);
 
         public bool UserExist(string identification)
         {

@@ -3,7 +3,7 @@ using User.Example.Domain.Interfaces;
 
 namespace User.Example.Domain.UseCases
 {
-    public class DeleteUserUseCase : IUseCase<string, bool>
+    public class DeleteUserUseCase : Base, IDeleteUserUseCase
     {
         private readonly IUserRepository _userRepository;
         public DeleteUserUseCase(IUserRepository userRepository) : base(userRepository)
@@ -11,7 +11,7 @@ namespace User.Example.Domain.UseCases
             _userRepository = userRepository;
         }
 
-        public override bool Execute(string identification)
+        public bool Execute(string identification)
         {
             if (!UserExist(identification))
                 throw new KeyNotFoundException($"User with id {identification} does not exist.");

@@ -4,15 +4,15 @@ using User.Example.Domain.Interfaces;
 
 namespace User.Example.Domain.UseCases
 {
-    public class GetAllUsersUseCase : IUseCase<string, IEnumerable<UserEntity>>
+    public class GetAllUsersUseCase : IGetAllUsersUseCase
     {
         private readonly IUserRepository _userRepository;
-        public GetAllUsersUseCase(IUserRepository userRepository) : base(userRepository)
+        public GetAllUsersUseCase(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public override IEnumerable<UserEntity> Execute(string request)
+        public IEnumerable<UserEntity> Execute()
         {
             return _userRepository.GetAll();
         }

@@ -1,17 +1,17 @@
 ﻿using User.Example.Domain.Entities;
-using User.Example.Domain.Interfaces;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using User.Example.Domain.Interfaces;
 
 namespace User.Example.Application.Commands.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, bool>
     {
-        private readonly IUseCase<UserEntity, bool> _createUserUseCase;
-        public CreateUserCommandHandler(IUseCase<UserEntity, bool> useCase)
+        private readonly ICreateUserUseCase _createUserUseCase;
+        public CreateUserCommandHandler(ICreateUserUseCase createUserUseCase)
         {
-            _createUserUseCase = useCase;
+            _createUserUseCase = createUserUseCase;
         }
 
         public async Task<bool> Handle(CreateUserCommand request, CancellationToken cancellationToken)

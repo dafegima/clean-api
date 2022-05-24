@@ -1,17 +1,17 @@
 ﻿using User.Example.Domain.Entities;
-using User.Example.Domain.Interfaces;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using User.Example.Domain.Interfaces;
 
 namespace User.Example.Application.Commands.UpdateUser
 {
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserEntity>
     {
-        private readonly IUseCase<UserEntity, UserEntity> _updateUserUseCase;
-        public UpdateUserCommandHandler(IUseCase<UserEntity, UserEntity> useCase)
+        private readonly IUpdateUserUseCase _updateUserUseCase;
+        public UpdateUserCommandHandler(IUpdateUserUseCase updateUserUseCase)
         {
-            _updateUserUseCase = useCase;
+            _updateUserUseCase = updateUserUseCase;
         }
 
         public async Task<UserEntity> Handle(UpdateUserCommand request, CancellationToken cancellationToken)

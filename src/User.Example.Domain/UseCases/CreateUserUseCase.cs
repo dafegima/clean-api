@@ -4,7 +4,7 @@ using User.Example.Domain.Interfaces;
 
 namespace User.Example.Domain.UseCases
 {
-    public class CreateUserUseCase : IUseCase<UserEntity, bool>
+    public class CreateUserUseCase : Base, ICreateUserUseCase
     {
         private readonly IUserRepository _userRepository;
         public CreateUserUseCase(IUserRepository userRepository) : base(userRepository)
@@ -12,7 +12,7 @@ namespace User.Example.Domain.UseCases
             _userRepository = userRepository;
         }
 
-        public override bool Execute(UserEntity request)
+        public bool Execute(UserEntity request)
         {
             if (UserExist(request.Identification))
                 throw new ConflictException($"User with id {request.Identification} already exist");

@@ -2,9 +2,11 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace User.Example.API.Endpoints.User
 {
+    [Tags("User")]
     [Route("api/users")]
     [Produces("application/json")]
     [ApiController]
