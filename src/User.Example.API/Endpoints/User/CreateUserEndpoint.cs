@@ -26,8 +26,8 @@ namespace User.Example.API.Endpoints.User
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand request)
         {
-            await _mediator.Send(request);
-            return Ok();
+            var result = await _mediator.Send(request);
+            return Ok(result);
         }
     }
 }

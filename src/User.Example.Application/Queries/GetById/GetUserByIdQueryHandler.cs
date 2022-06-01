@@ -1,4 +1,4 @@
-﻿using User.Example.Domain.Entities;
+﻿using AutoMapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -6,17 +6,20 @@ using User.Example.Domain.Interfaces;
 
 namespace User.Example.Application.Queries.GetById
 {
-    public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserEntity>
+    public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, GetUserByIdQueryResponse>
     {
         private readonly IGetUserByIdUseCase _getUserByIdUseCase;
-        public GetUserByIdQueryHandler(IGetUserByIdUseCase getUserByIdUseCase)
+        private readonly IMapper _mapper;
+        public GetUserByIdQueryHandler(IGetUserByIdUseCase getUserByIdUseCase, IMapper mapper)
         {
             _getUserByIdUseCase = getUserByIdUseCase;
+            _mapper = mapper;
         }
 
-        public async Task<UserEntity> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
+        public async Task<GetUserByIdQueryResponse> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
-            return _getUserByIdUseCase.Execute(request.Identification);
+            var user = _getUserByIdUseCase.Execute(request.Identification);
+            return _mapper.Map<GetUserByIdQueryResponse>(user);
         }
     }
 }

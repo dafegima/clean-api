@@ -3,6 +3,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using System.Net;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace User.Example.API.Endpoints.User
 {
@@ -18,11 +20,12 @@ namespace User.Example.API.Endpoints.User
             _mediator = mediator;
         }
 
+        [SwaggerResponse((int)HttpStatusCode.OK)]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var users = await _mediator.Send(new GetAllUsersQuery());
-            return Ok(users);
+            var result = await _mediator.Send(new GetAllUsersQuery());
+            return Ok(result);
         }
     }
 }

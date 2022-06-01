@@ -3,6 +3,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Net;
 
 namespace User.Example.API.Endpoints.User
 {
@@ -18,11 +20,14 @@ namespace User.Example.API.Endpoints.User
             _mediator = mediator;
         }
 
+        [SwaggerResponse((int)HttpStatusCode.NoContent)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
         [HttpDelete("{identification}")]
         public async Task<IActionResult> Delete(string identification)
         {
-            var result = await _mediator.Send(new DeleteUserCommand(identification));
-            return Ok();
+            await _mediator.Send(new DeleteUserCommand(identification));
+            return NoContent();
         }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Reflection;
 using User.Example.Application.Commands.CreateUser;
+using User.Example.Application.MapperProfiles;
 using User.Example.Application.PipelineBehaviors;
 
 namespace User.Example.Application
@@ -14,6 +15,7 @@ namespace User.Example.Application
         {
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddValidatorsFromAssemblies(new List<Assembly>() { typeof(CreateUserCommandValidator).Assembly });
+            services.AddAutoMapper(typeof(ApplicationMapperProfile));
             return services;
         }
     }

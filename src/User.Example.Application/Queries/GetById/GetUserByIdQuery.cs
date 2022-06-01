@@ -3,7 +3,7 @@ using MediatR;
 
 namespace User.Example.Application.Queries.GetById
 {
-    public class GetUserByIdQuery : IRequest<UserEntity>
+    public class GetUserByIdQuery : IRequest<GetUserByIdQueryResponse>
     {
         public GetUserByIdQuery(string identification)
         {

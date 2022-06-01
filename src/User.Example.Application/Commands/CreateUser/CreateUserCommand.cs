@@ -3,7 +3,7 @@ using System;
 
 namespace User.Example.Application.Commands.CreateUser
 {
-    public class CreateUserCommand : IRequest<bool>
+    public class CreateUserCommand : IRequest<CreateUserCommandResponse>
     {
         public CreateUserCommand() { }
         public CreateUserCommand(string identification, string nickName, string firstName, string lastName, string email, string genre, DateTime birthDate)

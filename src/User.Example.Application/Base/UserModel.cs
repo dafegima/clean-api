@@ -1,10 +1,8 @@
-﻿using MediatR;
-using System;
-using User.Example.Domain.Entities;
+﻿using System;
 
-namespace User.Example.Application.Commands.UpdateUser
+namespace User.Example.Application.Base
 {
-    public class UpdateUserCommand : IRequest<UpdateUserCommandResponse>
+    public class UserModel
     {
         public string Identification { get; set; }
         public string NickName { get; set; }
